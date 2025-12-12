@@ -1,96 +1,126 @@
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Fintech-inspired teal/blue-green palette */
+    --background: 180 20% 99%;
+    --foreground: 192 40% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 192 40% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 192 40% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Deep Teal - trust, finance, stability */
+    --primary: 173 58% 28%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Soft slate blue */
+    --secondary: 200 25% 94%;
+    --secondary-foreground: 192 40% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 200 20% 96%;
+    --muted-foreground: 200 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent: Warm amber for alerts */
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Success: Emerald green */
+    --success: 158 64% 40%;
+    --success-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Warning: Amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 15%;
 
-    --sidebar-background: 0 0% 98%;
+    /* Info: Sky blue */
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --border: 200 20% 88%;
+    --input: 200 20% 88%;
+    --ring: 173 58% 28%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --radius: 0.625rem;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Sidebar */
+    --sidebar-background: 192 40% 8%;
+    --sidebar-foreground: 200 20% 85%;
+    --sidebar-primary: 173 58% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 192 35% 15%;
+    --sidebar-accent-foreground: 200 20% 95%;
+    --sidebar-border: 192 30% 18%;
+    --sidebar-ring: 173 58% 45%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom tokens for Cash Log */
+    --cash-positive: 158 64% 40%;
+    --cash-negative: 0 72% 51%;
+    --shift-morning: 38 92% 50%;
+    --shift-evening: 250 45% 55%;
+    --shift-night: 220 70% 35%;
+    --status-matched: 158 64% 40%;
+    --status-mismatched: 0 72% 51%;
+    --status-pending: 38 92% 50%;
+    --status-approved: 158 64% 40%;
+    --status-rejected: 0 72% 51%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 192 40% 6%;
+    --foreground: 200 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 192 35% 10%;
+    --card-foreground: 200 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 192 35% 10%;
+    --popover-foreground: 200 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 173 58% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 192 30% 18%;
+    --secondary-foreground: 200 20% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 192 25% 15%;
+    --muted-foreground: 200 15% 55%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 38 92% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --success: 158 64% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 38 92% 10%;
+
+    --border: 192 25% 20%;
+    --input: 192 25% 20%;
+    --ring: 173 58% 45%;
+
+    --sidebar-background: 192 40% 4%;
+    --sidebar-foreground: 200 20% 85%;
+    --sidebar-primary: 173 58% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 192 35% 12%;
+    --sidebar-accent-foreground: 200 20% 95%;
+    --sidebar-border: 192 30% 15%;
+    --sidebar-ring: 173 58% 50%;
   }
 }
 
@@ -99,7 +129,123 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply relative overflow-hidden rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md;
+  }
+
+  .stat-card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .table-container {
+    @apply rounded-xl border border-border bg-card overflow-hidden shadow-sm;
+  }
+
+  .amount-positive {
+    @apply text-[hsl(var(--cash-positive))] font-semibold;
+  }
+
+  .amount-negative {
+    @apply text-[hsl(var(--cash-negative))] font-semibold;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-matched {
+    @apply bg-[hsl(var(--status-matched)/0.12)] text-[hsl(var(--status-matched))];
+  }
+
+  .status-mismatched {
+    @apply bg-[hsl(var(--status-mismatched)/0.12)] text-[hsl(var(--status-mismatched))];
+  }
+
+  .status-pending {
+    @apply bg-[hsl(var(--status-pending)/0.12)] text-[hsl(var(--status-pending))];
+  }
+
+  .status-approved {
+    @apply bg-[hsl(var(--status-approved)/0.12)] text-[hsl(var(--status-approved))];
+  }
+
+  .status-rejected {
+    @apply bg-[hsl(var(--status-rejected)/0.12)] text-[hsl(var(--status-rejected))];
+  }
+
+  .shift-badge-morning {
+    @apply bg-[hsl(var(--shift-morning)/0.15)] text-[hsl(var(--shift-morning))] border border-[hsl(var(--shift-morning)/0.3)];
+  }
+
+  .shift-badge-evening {
+    @apply bg-[hsl(var(--shift-evening)/0.15)] text-[hsl(var(--shift-evening))] border border-[hsl(var(--shift-evening)/0.3)];
+  }
+
+  .shift-badge-night {
+    @apply bg-[hsl(var(--shift-night)/0.15)] text-[hsl(var(--shift-night))] border border-[hsl(var(--shift-night)/0.3)];
+  }
+
+  .form-section {
+    @apply rounded-xl border border-border bg-card p-6 space-y-5;
+  }
+
+  .page-header {
+    @apply flex flex-col gap-1.5 mb-8;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-foreground;
+  }
+
+  .page-description {
+    @apply text-muted-foreground text-sm;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
   }
 }
