@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Dashboard from "@/pages/Dashboard";
 import CashEntry from "@/pages/CashEntry";
 import ShiftClosing from "@/pages/ShiftClosing";
@@ -17,28 +18,30 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster position="top-right" />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/*"
-            element={
-              <AppLayout>
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/cash-entry" element={<CashEntry />} />
-                  <Route path="/shift-closing" element={<ShiftClosing />} />
-                  <Route path="/cash-handover" element={<CashHandover />} />
-                  <Route path="/verification" element={<Verification />} />
-                  <Route path="/reports" element={<Reports />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </AppLayout>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster position="top-right" />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/*"
+              element={
+                <AppLayout>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/cash-entry" element={<CashEntry />} />
+                    <Route path="/shift-closing" element={<ShiftClosing />} />
+                    <Route path="/cash-handover" element={<CashHandover />} />
+                    <Route path="/verification" element={<Verification />} />
+                    <Route path="/reports" element={<Reports />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </AppLayout>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
