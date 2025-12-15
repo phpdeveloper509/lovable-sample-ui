@@ -9,6 +9,7 @@ import ShiftClosing from "@/pages/ShiftClosing";
 import CashHandover from "@/pages/CashHandover";
 import Verification from "@/pages/Verification";
 import Reports from "@/pages/Reports";
+import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -18,17 +19,25 @@ const App = () => (
     <TooltipProvider>
       <Toaster position="top-right" />
       <BrowserRouter>
-        <AppLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/cash-entry" element={<CashEntry />} />
-            <Route path="/shift-closing" element={<ShiftClosing />} />
-            <Route path="/cash-handover" element={<CashHandover />} />
-            <Route path="/verification" element={<Verification />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AppLayout>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/*"
+            element={
+              <AppLayout>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/cash-entry" element={<CashEntry />} />
+                  <Route path="/shift-closing" element={<ShiftClosing />} />
+                  <Route path="/cash-handover" element={<CashHandover />} />
+                  <Route path="/verification" element={<Verification />} />
+                  <Route path="/reports" element={<Reports />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </AppLayout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
