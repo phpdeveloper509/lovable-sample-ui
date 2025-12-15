@@ -13,19 +13,19 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { useAuth, UserRole, AuthUser } from "@/contexts/AuthContext";
 
-type UserRole = "reception" | "accountant" | "admin";
-
-const mockUsers = [
-  { id: "1", name: "Mohammed", email: "mohammed@tisco.com", role: "reception" as UserRole },
-  { id: "2", name: "Ibrahim", email: "ibrahim@tisco.com", role: "reception" as UserRole },
-  { id: "3", name: "Fatima", email: "fatima@tisco.com", role: "reception" as UserRole },
-  { id: "4", name: "Ahmad", email: "ahmad@tisco.com", role: "accountant" as UserRole },
-  { id: "5", name: "Admin User", email: "admin@tisco.com", role: "admin" as UserRole },
+const mockUsers: AuthUser[] = [
+  { id: "1", name: "Mohammed", email: "mohammed@tisco.com", role: "reception" },
+  { id: "2", name: "Ibrahim", email: "ibrahim@tisco.com", role: "reception" },
+  { id: "3", name: "Fatima", email: "fatima@tisco.com", role: "reception" },
+  { id: "4", name: "Ahmad", email: "ahmad@tisco.com", role: "accountant" },
+  { id: "5", name: "Admin User", email: "admin@tisco.com", role: "admin" },
 ];
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [selectedRole, setSelectedRole] = useState<UserRole | "">("");
@@ -49,16 +49,22 @@ export default function Login() {
 
     // Simulate login
     setTimeout(() => {
+      const user: AuthUser = {
+        id: Date.now().toString(),
+        name: email.split("@")[0],
+        email,
+        role: selectedRole,
+      };
+      login(user);
       setIsLoading(false);
       toast.success(`Logged in as ${selectedRole}`);
       navigate("/");
     }, 1000);
   };
 
-  const handleQuickLogin = (user: typeof mockUsers[0]) => {
-    setEmail(user.email);
-    setSelectedRole(user.role);
-    toast.success(`Quick login as ${user.name} (${user.role})`);
+  const handleQuickLogin = (user: AuthUser) => {
+    login(user);
+    toast.success(`Logged in as ${user.name} (${user.role})`);
     navigate("/");
   };
 
@@ -171,7 +177,7 @@ export default function Login() {
 
             {/* Quick Login Users */}
             <div className="grid grid-cols-2 gap-2">
-              {mockUsers.slice(0, 4).map((user) => (
+              {mockUsers.map((user) => (
                 <Button
                   key={user.id}
                   type="button"
