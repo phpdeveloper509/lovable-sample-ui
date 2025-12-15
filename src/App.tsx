@@ -11,6 +11,7 @@ import CashHandover from "@/pages/CashHandover";
 import Verification from "@/pages/Verification";
 import Reports from "@/pages/Reports";
 import Login from "@/pages/Login";
+import UserManagement from "@/pages/UserManagement";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
                     <Route path="/cash-handover" element={<CashHandover />} />
                     <Route path="/verification" element={<Verification />} />
                     <Route path="/reports" element={<Reports />} />
+                    <Route path="/users" element={<UserManagement />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </AppLayout>
